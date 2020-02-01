@@ -1,0 +1,90 @@
+{
+  "music": [
+    {
+      "id": 1,
+      "name": "Picture 1",
+      "price": 2000,
+      "imgName": "Picture 1.png"
+    },
+    {
+      "id": 2,
+      "name": "Picture 2",
+      "price": 2000,
+      "imgName": "Picture 2.png"
+    },
+    {
+      "id": 3,
+      "name": "Picture 3",
+      "price": 2000,
+      "imgName": "Picture 3.png"
+    },
+    {
+      "id": 4,
+      "name": "Picture 4",
+      "price": 2000,
+      "imgName": "Picture 4.png"
+    },
+   { 
+    "id": 5,
+    "name": "Picture 5",
+    "price": 2000,
+    "imgName": "Picture 5.png"
+  },
+  {
+  "id": 6,
+  "name": "Picture 6",
+  "price": 2000,
+  "imgName": "Picture 6.png"
+},
+{
+  "id": 7,
+  "name": "Picture 7",
+  "price": 2000,
+  "imgName": "Picture 7.png"
+},
+{
+  "id": 8,
+  "name": "Picture 8",
+  "price": 2000,
+  "imgName": "Picture 8.png"
+},
+{ 
+"id": 9,
+"name": "Picture 9",
+"price": 2000,
+"imgName": "Picture 9.png"
+},
+{
+"id": 10,
+"name": "Picture 10",
+"price": 2000,
+"imgName": "Picture 10.png"
+}
+  ],
+  "merch": [
+    {
+      "id": 5,
+      "name": "Drawing 1",
+      "price": 2000,
+      "imgName": "Drawing A4 1.png"
+    },
+    {
+      "id": 6,
+      "name": "Drawing 2",
+      "price": 6000,
+      "imgName": "Drawing A3 1.png"
+    },
+    {
+      "id": 7,
+      "name": "Drawing 3",
+      "price": 2000,
+      "imgName": "Drawing A4 2.png"
+    },
+    {
+      "id": 8,
+      "name": "Drawing 4",
+      "price": 6000,
+      "imgName": "Drawing A3 2.png"
+    }
+  ]
+}

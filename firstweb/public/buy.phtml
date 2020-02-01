@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The PARAGON OF THE ART | About</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" href="styles.css" />
+        <script src="global.js"></script>
+        <script src="upload.js"></script>
+    </head>
+    <body>
+        <header class="main-header">
+            <nav class="nav main-nav">
+                <ul>
+                    <li><a href="index.html">GALLERY</a></li>
+                    <li><a href="/store">STORE</a></li>
+                    <li><a href="order.html">ORDER</a></li>
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">The PARAGON OF THE ART</h1>
+        </header>
+        <hr>
+
+    <div class="wrapper">
+        <div class="upload-console">
+            <h2 class="upload-console-header">Upload</h2>
+
+            <div class="upload-console-body">
+                    <h3>Select files from your computer</h3>
+
+                    <form action="upload.php" method="POST" enctype="multipart/form-data">
+                        
+                        <input type="file" name="files[]" id="standard-upload-files" multiple>
+                        <input type="submit" value="Upload files" id="standard-upload">
+                    </form>
+                     
+                    <h3>Or drag and drop files below</h3>
+
+                    <div class="upload-console-drop" id="drop-zone">
+                        drag and drop file here
+                    </div>
+
+                    <div class="bar">
+                        <div class="bar-fill" id="bar-fill">
+                            <div class="bar-fill-text" id="bar-fill-text"></div>
+                        </div>
+
+                    </div>  
+                    <!--hidden class-->
+                    <div id="uploads-finished" class="hidden">
+                        <h3>Processed files</h3>
+                       
+                    </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--drag and drop-->
+    <script>
+        (function(){
+
+"use strict";
+
+var dropZone = document.getElementById('drop-zone');
+var barFill = document.getElementById('bar-fill');
+var barFillText = document.getElementById('bar-fill-text');
+var uploadsFinished = document.getElementById('uploads-finished');
+
+
+var startUpload = function(files){
+    app.uploader({
+        files: files,
+        progressBar: barFill,
+        progressText: barFillText,
+        processor: 'upload.php',
+
+        finished: function(data){
+            var x;
+            var uploadedElement;
+            var uploadedAnchor;
+            var uploadedStatus;
+            var currFile;
+
+            for(x = 0; x < data.length; x = x + 1){
+                currFile = data[x];
+
+                uploadedElement = document.createElement('div');
+                uploadedElement.className = 'uploaded-console-upload';
+
+                uploadedAnchor = document.createElement('a');
+                uploadedAnchor.textContent = currFile.name;
+
+                if(currFile.uploaded){
+                    uploadedAnchor.href = 'public/' + currFile.file;
+                }
+
+                uploadedStatus = document.createElement('span');
+                uploadedStatus.textContent = currFile.uploaded ? 'Uploaded' : 'Failed';
+
+                uploadedElement.appendChild(uploadedAnchor);
+                uploadedElement.appendChild(uploadedStatus);
+
+                uploadsFinished.appendChild(uploadedElement);
+            }
+
+            uploadsFinished.className = '';
+
+        },
+
+        error: function(){
+
+        }
+        
+
+    });
+}; 
+
+//standard form upload
+document.getElementById('standard-upload').addEventListener('click', function(e){
+    var standardUploadFiles = document.getElementById('standard-upload-files').files;
+    e.preventDefault
+    startUpload(standardUploadFiles);
+});
+
+//Drop functionality
+dropZone.ondrop = function(e) {
+     e.preventDefault();
+     this.className = 'upload-console-drop';
+     startUpload(e.dataTransfer.files);
+};
+ 
+dropZone.ondragover = function(){
+     this.className = 'upload-console-drop drop';
+     return false;
+ };
+
+
+ dropZone.ondragleave = function() {
+         this.className = 'upload-console-drop';
+         return false;
+     };
+}()) ;
+    
+    </script>
+
+<script>
+var app = app || {};
+
+(function(o){
+    "use strict";
+
+    var ajax, getFormData, setProgress;
+
+    ajax = function(data){
+        var xmlhttp = new XMLHttpRequest();
+        var uploaded;
+
+        xmlhttp.addEventListener('readystatechange', function(){
+            if(this.readyState === 4){
+                if(this.status === 200){
+
+                    uploaded = JSON.parse(this.response);
+
+                    if(typeof o.options.finished === 'function'){
+                        o.options.finished(uploaded);
+                    }
+                }else{
+                    if(typeof o.options.console.error === 'function')
+                    {
+                        o.options.error();
+                    }
+                }
+
+            }
+        });
+
+        xmlhttp.upload.addEventListener('progress', function(e){
+            var percent;
+
+            if(e.lengthComputable === true){
+                percent = Math.round((event.loaded / event.total) * 100);
+                setProgress(percent);
+            }
+        });
+
+       xmlhttp.open('post', o.options.processor);
+       xmlhttp.send(data);
+
+    };
+
+    getFormData = function(source){
+        var data = new FormData();
+        var i;
+
+        for(i = 0; i < source.length; i = i + 1){
+            data.append('files[]', source[i]);
+        }
+            return data;
+    };
+
+    setProgress = function(value){
+        if(o.options.progressBar !== undefined){
+            o.options.progressBar.style.width = value ? value + '%' : 0; 
+        }
+
+        if(o.options.progressText !== undefined){
+            o.options.progressText.textContent = value ? value + '%' : '';
+        }
+    };
+
+    o.uploader = function(options){
+        o.options = options;
+
+        if(options.files !== undefined){
+            ajax(getFormData(o.options.files));
+        }
+
+    };
+
+}(app));
+</script>
+
+<?php
+
+header('Content-Type: application/json');
+
+$allowed = ['png', 'jpg', 'img', 'jpeg'];
+$processed = [];
+
+foreach($_FILES['files']['name'] as $key => $name){
+    if($_FILES['files']['error'][$key] === 0){
+        $content = fopen($_FILES["resFile"]["tmp_name"], 'r');
+
+        $temp = $_FILES['files']['tmp_name'][$key];
+
+        $ext = explode('.', $name);
+            $ext = strtolower(end($ext));
+
+            $file = uniqid('', true) . time() . '.' . $ext;
+
+            if(in_array($ext, $allowed) && move_uploaded_file($temp, 'public/' .$file)){
+                $processed[] = array(        
+                    'name' => $name,
+                    'file' => $file,
+                    'uploaded' => true 
+                );
+        } else{
+            $processed[] = array(
+                'name' => $name,
+                    'uploaded' => false
+            );
+        }
+    }
+
+}
+if(!empty($_POST['ajax'])){
+
+  echo json_encode($processed);
+}
+
+
+        
+        <footer class="main-footer">
+            <div class="container main-footer-container">
+                <h3 class="band-name">The PARAGON OF THE ART</h3>
+                <ul class="nav footer-nav">
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCDFGmaI_ZBrGM7kpMCB4GTw" target="_blank">
+                            <img src="Images/YouTube Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/theparagonoftheart/" target="_blank">
+                            <img src="Images/instagram.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/TheParagonOfTheArt/" target="_blank">
+                            <img src="Images/Facebook Logo.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

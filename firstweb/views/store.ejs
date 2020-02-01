@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The PARAGON OF THE ART | Store</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" href="styles.css" />
+        <script src="https://checkout.stripe.com/checkout.js" defer></script>
+        <script>
+            var stripePublicKey = '<%= stripePublicKey %>'
+        </script>
+        <script src="store.js" defer></script>
+
+    </head>
+    <body>
+        <header class="main-header">
+            <nav class="main-nav nav">
+                <ul>
+                    <li><a href="index.html">GALLERY</a></li>
+                    <li><a href="/store">STORE</a></li>
+                    <li><a href="order.html">ORDER</a></li>
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">The PARAGON OF THE ART</h1>
+        </header>
+        <hr>
+        <section class="container content-section">
+            <h2 class="section-header">PICTURES</h2>
+            <div class="shop-items">
+                <% items.music.forEach(function(item){ %>
+                    <div class="shop-item" data-item-id="<%= item.id %>">
+                        <span class="shop-item-title"><%= item.name %></span>
+                        <img class="shop-item-image" src="Images/<%= item.imgName %>">
+                        <div class="shop-item-details">
+                            <!--span class="shop-item-price">$<%= item.price / 100 %></span>
+                            button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button-->
+
+                            <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                <input type="hidden" name="cmd" value="_s-xclick">
+                                <input type="hidden" name="hosted_button_id" value="KMAFHJ9KSH544">
+                                <table>
+                                <tr><td><input type="hidden" name="on0" value="Picture Sizes And Drawing tool">Picture Size</td></tr><tr><td><select name="os0">
+                                    <option value="A2">A2 R1000.00 </option>
+                                    <option value="A3">A3 R600.00 </option>
+                                    <option value="A4">A4 R200.00 </option>
+                                </select> </td></tr>
+                                <tr><td><input type="hidden" name="on1" value="Drawing Tool">Drawing Tool</td></tr><tr><td><select name="os1">
+                                    <option value="Pen">Pen </option>
+                                    <option value="Pencil">Pencil </option>
+                                    <option value="Charcoal">Charcoal </option>
+                                </select> </td></tr>
+                                <tr><td><input type="hidden" name="on2" value="Pic selected e.g Pic 1 or Drwng 1"><h1></h1><b>Selected: e.g Pic 1 or Drwng 1</b></h1></td></tr><tr><td><input type="text" name="os2" maxlength="200"></td></tr>
+                                </table>
+                                <input type="hidden" name="currency_code" value="USD">
+                                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                                </form>
+                                
+                                
+                                
+                        
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </section>
+        <section class="container content-section">
+            <h2 class="section-header">DRAWINGS</h2>
+            <div class="shop-items">
+                <% items.merch.forEach(function(item){ %>
+                    <div class="shop-item" data-item-id="<%= item.id %>">
+                        <span class="shop-item-title"><%= item.name %></span>
+                        <img class="shop-item-image" src="Images/<%= item.imgName %>">
+                        <div class="shop-item-details">
+                            <!--span class="shop-item-price">$<%= item.price / 100 %></span>
+                            button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button-->
+
+                            <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                <input type="hidden" name="cmd" value="_s-xclick">
+                                <input type="hidden" name="hosted_button_id" value="SKU5Q5778XWQJ">
+                                <table>
+                                <tr><td><input type="hidden" name="on0" value="Picture Sizes And Drawing tool">Picture Sizes And Drawing tool</td></tr><tr><td><select name="os0">
+                                    <option value="A2">A2 $100.00 USD</option>
+                                    <option value="A3">A3 $60.00 USD</option>
+                                    <option value="A4">A4 $20.00 USD</option>
+                                </select> </td></tr>
+                                <tr><td><input type="hidden" name="on1" value="Drawing Tool">Drawing Tool</td></tr><tr><td><select name="os1">
+                                    <option value="Pen">Pen </option>
+                                    <option value="Pencil">Pencil </option>
+                                    <option value="Charcoal">Charcoal </option>
+                                </select> </td></tr>
+                                <tr><td><input type="hidden" name="on2" value="selected e.g Pic 1 or Drwng 1"><b>Item Selected e.g Pic 1 or Drwng 1</b></td></tr><tr><td><input type="text" name="os2" maxlength="200"></td></tr>
+                                </table>
+                                <input type="hidden" name="currency_code" value="USD">
+                                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                                </form>
+                                
+                                
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </section>
+        <section class="container content-section">
+            <!--h2 class="section-header">CART</h2>
+            <div class="cart-row">
+                <span class="cart-item cart-header cart-column">ITEM</span>
+                <span class="cart-price cart-header cart-column">PRICE</span>
+                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+            </div>
+            <div class="cart-items">
+            </div>
+            <div class="cart-total">
+                <strong class="cart-total-title">Total</strong>
+                <span class="cart-total-price">$0</span>
+            </div>
+            button class="btn btn-primary btn-purchase" type="button">PURCHASE</button
+
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="HTDJ52VE435DJ">
+                <table>
+                <tr><td><input type="hidden" name="on0" value="Size">Size</td></tr><tr><td><select name="os0">
+                    <option value="A2">A2 $100.00 USD</option>
+                    <option value="A3">A3 $60.00 USD</option>
+                    <option value="A4">A4 $20.00 USD</option>
+                </select> </td></tr>
+                <tr><td><input type="hidden" name="on1" value="Drawing Tool">Drawing Tool</td></tr><tr><td><select name="os1">
+                    <option value="Charcoal">Charcoal </option>
+                    <option value="Pen">Pen </option>
+                    <option value="Pen">Pen </option>
+                </select> </td></tr>
+                </table>
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form-->
+                
+                
+        </section>
+        <hr>
+        <footer class="main-footer">
+            <div class="container main-footer-container">
+                <h3 class="band-name">The PARAGON OF THE ART</h3>
+                <ul class="nav footer-nav">
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCDFGmaI_ZBrGM7kpMCB4GTw" target="_blank">
+                            <img src="Images/YouTube Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/theparagonoftheart/" target="_blank">
+                            <img src="Images/instagram.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/TheParagonOfTheArt/" target="_blank">
+                            <img src="Images/Facebook Logo.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

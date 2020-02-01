@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The PARAGON OF THE ART | Store</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" href="styles.css" />
+
+    </head>
+    <body>
+        <header class="main-header">
+            <nav class="main-nav nav">
+                <ul>
+                    <li><a href="index.html">GALLERY</a></li>
+                    <li><a href="/store">STORE</a></li>
+                    <li><a href="order.html">ORDER</a></li>
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">The PARAGON OF THE ART</h1>
+        </header>
+        <hr>
+
+  <div class="slide-container">
+          <div class="effect slide">
+              <img src="Images/1.jpg">
+          </div>
+          <div class="effect slide">
+              <img src="Images/2.jpg">
+          </div>
+          <div class="effect slide">
+              <img src="Images/3.jpg">
+          </div>
+          <div class="effect slide"><img src="Images/5.jpg"></div>
+          <div class="effect slide"><img src="Images/7.jpg"></div>
+          <div class="effect slide"><img src="Images/8.jpg"></div>
+          <div class="effect slide"><img src="Images/9.jpg"></div>
+          <div class="effect slide"><img src="Images/10.jpg"></div>
+      </div>
+
+      <div class="dot-container">
+          <span class ="slider-buttons"></span>
+          <span class ="slider-buttons"></span>
+          <span class ="slider-buttons"></span>
+          <span class ="slider-buttons"></span>
+          <span class ="slider-buttons"></span>
+          <span class ="slider-buttons"></span>
+          <span class ="slider-buttons"></span>
+          <span class ="slider-buttons"></span>
+          
+          
+<script>
+          var slideIndex = 0;
+         show();
+
+        function show() {
+        var i;
+        var slides = document.getElementsByClassName("slide");
+        var dots = document.getElementsByTagName("span")
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        slideIndex = slideIndex+1;
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+     }
+     for(i=0;i<dots.length;i++)
+     {
+        dots[i].className = dots[i].className.replace(" active","");
+     }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className+=(" active");
+      setTimeout(show, 3000); // Change image every 2 seconds
+}
+      
+</script>
+
+      <hr>  
+        <footer class="main-footer">
+            <div class="container main-footer-container">
+                <h3 class="band-name">The PARAGON OF THE ART</h3>
+                <ul class="nav footer-nav">
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCDFGmaI_ZBrGM7kpMCB4GTw" target="_blank">
+                            <img src="Images/YouTube Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/theparagonoftheart/" target="_blank">
+                            <img src="Images/instagram.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/TheParagonOfTheArt/" target="_blank">
+                            <img src="Images/Facebook Logo.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

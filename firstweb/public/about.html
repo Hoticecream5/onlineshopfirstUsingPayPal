@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The PARAGON OF THE ART | About</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" href="styles.css" />
+        
+    </head>
+    <body>
+        <header class="main-header">
+            <nav class="nav main-nav">
+                <ul>
+                    <li><a href="index.html">GALLERY</a></li>
+                    <li><a href="/store">STORE</a></li>
+                    <li><a href="about.html">ORDER</a></li>
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">The PARAGON OF THE ART</h1>
+        </header>
+        <hr>
+
+        <input type="image" name="picture" class="filepond">
+
+        <!--section class="content-section container">
+                <div class = "dropzone" id = "dropzone">
+                        <aside class="col"></aside>
+                        <div>Drop Files Here</div>  
+
+                    </div>
+                    <div>
+                        
+                    </div>
+                    <script>
+                       (function(){
+                           var dropzone = document.getElementById('dropzone');
+
+                           var displayUploads = function(data){
+                               var uploads = document.getElementById('uploads'),
+                               anchor,
+                               x;
+
+                               for(x = 0; x < data.length;x = x + 1){
+                                   anchor = document.createElement('a');
+                                   anchor.href = data[x].file;
+                                   anchor.innerText = data[x].name;
+                                   uploads.appendChild(anchor);
+                               }
+                           }
+
+                           var upload = function(files){
+
+                            var formData = new FormData(),
+                            xhr = new XMLHttpRequest(),
+                            x;
+
+                            for(x = 0; x < files.length; x = x+1){
+                                formData.append('file[]', files[x]);
+                            }
+
+                            xhr.onload = function(){
+                                var data = JSON.parse(this.responseText);
+                                displayUploads(data);
+
+                            }
+                            xhr.open('post' , 'upload.php');
+                            xhr.send(formData);
+                           }
+
+                           dropzone.ondrop = function(event){
+                                event.preventDefault();
+                                this.className = 'dropzone';
+                                upload(event.dataTransfer.files);
+
+                           };
+                            
+                           dropzone.ondragover = function(){
+                                this.className = 'dropzone dragover';
+                                return false;
+                            }
+
+                           
+                            dropzone.ondragleave = function(){
+                                    this.className = 'dropzone';
+                                    return false;
+                                }
+                       }()) ;
+                    </script>
+
+        </section>
+        <hr>
+        <span class="cart-quantity cart-header cart-column">Image Size A</span>
+        <div class="cart-total">
+                <strong class="cart-total-title">Total</strong>
+                <span class="cart-total-price">R0</span>
+            </div>
+            <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button-->
+        
+        <footer class="main-footer">
+            <div class="container main-footer-container">
+                <h3 class="band-name">The PARAGON OF THE ART</h3>
+                <ul class="nav footer-nav">
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCDFGmaI_ZBrGM7kpMCB4GTw" target="_blank">
+                            <img src="Images/YouTube Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/theparagonoftheart/" target="_blank">
+                            <img src="Images/instagram.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/TheParagonOfTheArt/" target="_blank">
+                            <img src="Images/Facebook Logo.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>
